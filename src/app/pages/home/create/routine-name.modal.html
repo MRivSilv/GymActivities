@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nombre de la rutina</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-label position="stacked">Nombre</ion-label>
+    <ion-input
+      placeholder="Ej: Push Day"
+      [(ngModel)]="routineName">
+    </ion-input>
+  </ion-item>
+
+  <ion-button
+    expand="block"
+    color="success"
+    class="ion-margin-top"
+    (click)="finish()">
+    Terminé
+  </ion-button>
+
+</ion-content>

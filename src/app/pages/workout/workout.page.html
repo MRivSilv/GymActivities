@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Entrenamiento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card *ngFor="let ex of exercises; let i = index">
+
+    <ion-card-header>
+      <ion-card-title>{{ ex.name }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-grid>
+        <ion-row *ngFor="let set of ex.sets">
+          <ion-col size="6">
+            <ion-input
+              type="number"
+              placeholder="Peso"
+              [(ngModel)]="set.weight">
+            </ion-input>
+          </ion-col>
+
+          <ion-col size="6">
+            <ion-input
+              type="number"
+              placeholder="Reps"
+              [(ngModel)]="set.reps">
+            </ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-button
+        size="small"
+        fill="outline"
+        (click)="addSet(i)">
+        + Agregar serie
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+  <ion-button
+  expand="block"
+  color="success"
+  class="finish-btn"
+  (click)="finishWorkout()">
+  Terminar rutina
+</ion-button>
+</ion-content>

@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>GymActivities</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h2>Rutinas</h2>
+
+  <!-- SIN rutinas -->
+  <ion-text color="medium" *ngIf="routines.length === 0">
+    Aún no tienes rutinas creadas
+  </ion-text>
+
+  <!-- LISTA DE RUTINAS -->
+  <ion-card *ngFor="let routine of routines; let i = index" class="routine-card" (click)="startRoutine(routine)">
+
+    <!-- BOTÓN BASURERO -->
+    <ion-button
+      fill="clear"
+      color="danger"
+      class="delete-btn"
+      (click)="deleteRoutine(i); $event.stopPropagation()">
+      🗑
+    </ion-button>
+
+    <ion-card-header>
+      <ion-card-title>{{ routine.name }}</ion-card-title>
+      <ion-card-subtitle>
+        {{ routine.exercises.length }} ejercicios
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let ex of routine.exercises | slice:0:3">
+          <ion-label>{{ ex.name }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-text color="medium" *ngIf="routine.exercises.length > 3">
+        +{{ routine.exercises.length - 3 }} más
+      </ion-text>
+    </ion-card-content>
+
+  </ion-card>
+
+  <!-- BOTÓN CREAR -->
+  <ion-button
+    expand="block"
+    routerLink="/home/create"
+    class="ion-margin-top">
+    Crear rutina
+  </ion-button>
+
+</ion-content>

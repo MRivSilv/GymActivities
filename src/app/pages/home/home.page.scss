@@ -1,0 +1,18 @@
+h2 {
+  margin-bottom: 12px;
+}
+
+ion-card {
+  margin-bottom: 16px;
+}
+
+.routine-card {
+  position: relative;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 10;
+}

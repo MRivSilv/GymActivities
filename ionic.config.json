@@ -1,0 +1,7 @@
+{
+  "name": "GymActivities",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
