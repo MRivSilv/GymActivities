@@ -1,63 +1,79 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="px-4 bg-white">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>Crear rutina</ion-title>
+
+    <ion-title class="text-lg font-semibold tracking-tight">
+      Crear rutina
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="bg-gray-50">
 
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Ejercicios</ion-card-title>
-    </ion-card-header>
+  <div class="px-4 py-6 max-w-md mx-auto space-y-6">
 
-    <ion-card-content>
+    <!-- CARD PRINCIPAL -->
+    <ion-card class="rounded-3xl shadow-sm bg-white">
 
-      <ion-list>
+      <ion-card-header class="pb-2">
+        <ion-card-title class="text-lg font-semibold text-gray-900 text-center">
+          Ejercicios
+        </ion-card-title>
+      </ion-card-header>
 
-        <!-- Encabezados -->
-        <ion-item lines="none" class="table-header">
-          <ion-label>Nombre de ejercicio</ion-label>
-          <ion-label></ion-label>
-        </ion-item>
+      <ion-card-content class="space-y-4">
 
-        <!-- Filas -->
-        <ion-item *ngFor="let exercise of exercises; let i = index">
+        <!-- LISTA -->
+        <div class="space-y-3">
 
-          <ion-input
-            placeholder="Ej: Press banca"
-            [(ngModel)]="exercise.name">
-          </ion-input>
+          <div
+            *ngFor="let exercise of exercises; let i = index"
+            class="flex items-center gap-3 border border-gray-200 rounded-xl px-3 py-2">
 
-          <ion-button
-            fill="clear"
-            color="danger"
-            (click)="removeExercise(i)">
-            🗑
-          </ion-button>
+            <ion-input
+              placeholder="Ej: Press banca"
+              [(ngModel)]="exercise.name"
+              class="flex-1 text-sm">
+            </ion-input>
 
-        </ion-item>
+            <ion-button
+              fill="clear"
+              color="danger"
+              (click)="removeExercise(i)">
 
-      </ion-list>
+              <ion-icon
+                name="trash-outline"
+                class="text-lg">
+              </ion-icon>
 
-      <!-- Botón + -->
-      <div class="add-button">
-        <ion-button fill="outline" shape="round" (click)="addExercise()">
-          +
+            </ion-button>
+
+          </div>
+
+        </div>
+
+        <!-- BOTÓN AGREGAR -->
+        <ion-button
+          fill="outline"
+          expand="block"
+          class="h-12 rounded-xl font-medium"
+          (click)="addExercise()">
+          + Agregar ejercicio
         </ion-button>
-      </div>
 
-      <ion-button
-        expand="block"
-        color="primary"
-        (click)="openRoutineModal()">
-        Crear rutina
-      </ion-button>
+      </ion-card-content>
+    </ion-card>
 
-    </ion-card-content>
-  </ion-card>
+    <!-- BOTÓN CREAR RUTINA -->
+    <ion-button
+      expand="block"
+      class="h-14 rounded-2xl text-base font-semibold tracking-wide"
+      (click)="openRoutineModal()">
+      Crear rutina
+    </ion-button>
+
+  </div>
 
 </ion-content>

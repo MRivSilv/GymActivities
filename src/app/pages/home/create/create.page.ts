@@ -5,7 +5,7 @@ import { IonicModule, ModalController } from "@ionic/angular";
 import { Router } from '@angular/router';
 import { RoutineNameModal } from './routine-name.modal';
 interface Exercise {
-  name: string;
+  name: string ;
 }
 
 @Component({
@@ -18,7 +18,7 @@ interface Exercise {
 export class CreatePage implements OnInit {
 
   exercises: Exercise[] = [
-    { name: '' }
+    { name: ''}
   ];
   
   constructor(
@@ -28,7 +28,7 @@ export class CreatePage implements OnInit {
   
 
   addExercise() {
-    this.exercises.push({ name: '' });
+    this.exercises.push({ name: ''});
   }
 
   removeExercise(index: number) {
@@ -54,8 +54,11 @@ export class CreatePage implements OnInit {
 
   saveRoutine(routineName: string) {
     const routine = {
-      name: routineName,
-      exercises: this.exercises,
+      name: routineName.toUpperCase(),
+      exercises: this.exercises.map(ex => ({
+        ...ex,
+        name: ex.name.toUpperCase()
+      })),
       createdAt: new Date()
     };
 

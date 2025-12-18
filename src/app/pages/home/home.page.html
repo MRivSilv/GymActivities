@@ -1,57 +1,89 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>GymActivities</ion-title>
+  <ion-toolbar class="px-4 bg-white">
+    <ion-title class="text-xl font-semibold tracking-tight">
+      GymActivities
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="bg-gray-50">
 
-  <h2>Rutinas</h2>
+  <div class="px-4 py-6 max-w-md mx-auto">
 
-  <!-- SIN rutinas -->
-  <ion-text color="medium" *ngIf="routines.length === 0">
-    Aún no tienes rutinas creadas
-  </ion-text>
+    <!-- TÍTULO -->
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-lg font-semibold text-gray-900">
+        Rutinas
+      </h2>
+    </div>
 
-  <!-- LISTA DE RUTINAS -->
-  <ion-card *ngFor="let routine of routines; let i = index" class="routine-card" (click)="startRoutine(routine)">
+    <!-- SIN RUTINAS -->
+    <div
+      *ngIf="routines.length === 0"
+      class="text-center text-gray-400 italic py-10">
+      Aún no tienes rutinas creadas
+    </div>
 
-    <!-- BOTÓN BASURERO -->
+    <!-- LISTA DE RUTINAS -->
+    <ion-card
+      *ngFor="let routine of routines; let i = index"
+      (click)="startRoutine(routine)"
+      class="relative mb-4 rounded-3xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 active:scale-[0.98]">
+
     <ion-button
       fill="clear"
       color="danger"
-      class="delete-btn"
+      class="absolute top-3 right-3 z-10"
       (click)="deleteRoutine(i); $event.stopPropagation()">
-      🗑
+
+      <ion-icon
+        name="trash-outline"
+        class="text-xl"
+        color="black">
+      </ion-icon>
+
     </ion-button>
 
-    <ion-card-header>
-      <ion-card-title>{{ routine.name }}</ion-card-title>
-      <ion-card-subtitle>
-        {{ routine.exercises.length }} ejercicios
-      </ion-card-subtitle>
-    </ion-card-header>
 
-    <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let ex of routine.exercises | slice:0:3">
-          <ion-label>{{ ex.name }}</ion-label>
-        </ion-item>
-      </ion-list>
+      <ion-card-header class="pb-2">
+        <ion-card-title class="text-lg font-semibold text-gray-900 text-center">
+          {{ routine.name }}
+        </ion-card-title>
 
-      <ion-text color="medium" *ngIf="routine.exercises.length > 3">
-        +{{ routine.exercises.length - 3 }} más
-      </ion-text>
-    </ion-card-content>
+        <ion-card-subtitle class="text-sm text-gray-500 mx-4">
+          {{ routine.exercises.length }} ejercicios
+        </ion-card-subtitle>
+      </ion-card-header>
 
-  </ion-card>
+      <ion-card-content class="pt-0">
 
-  <!-- BOTÓN CREAR -->
-  <ion-button
-    expand="block"
-    routerLink="/home/create"
-    class="ion-margin-top">
-    Crear rutina
-  </ion-button>
+        <div class="space-y-1">
+          <div
+            *ngFor="let ex of routine.exercises | slice:0:3"
+            class="text-sm text-gray-700">
+            • {{ ex.name }}
+          </div>
+        </div>
+
+        <div
+          *ngIf="routine.exercises.length > 3"
+          class="mt-2 text-xs text-gray-400">
+          +{{ routine.exercises.length - 3 }} más
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <!-- BOTÓN CREAR RUTINA -->
+    <ion-button
+      expand="block"
+      class="mt-8 h-14 rounded-2xl text-base font-semibold tracking-wide"
+      (click)="goToCreate()">
+      Crear rutina
+    </ion-button>
+
+
+  </div>
 
 </ion-content>

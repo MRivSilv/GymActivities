@@ -61,24 +61,27 @@ export class HomePage implements OnInit {
 
     await alert.present();
   }
-  async startRoutine(routine: Routine) {
-  const modal = await this.modalCtrl.create({
-    component: StartWorkoutModal,
-    componentProps: {
-      routineName: routine.name
-    },
-    breakpoints: [0, 0.35],
-    initialBreakpoint: 0.35
-  });
-
-  await modal.present();
-
-  const { data } = await modal.onDidDismiss();
-
-  if (data?.start) {
-    this.router.navigate(['/workout'], {
-      state: { routine }
+    async startRoutine(routine: Routine) {
+    const modal = await this.modalCtrl.create({
+      component: StartWorkoutModal,
+      componentProps: {
+        routineName: routine.name
+      },
+      breakpoints: [0, 0.35],
+      initialBreakpoint: 0.35
     });
+
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+
+    if (data?.start) {
+      this.router.navigate(['/workout'], {
+        state: { routine }
+      });
+    }
   }
-}
+  goToCreate() {
+    this.router.navigate(['/home/create']);
+  }
 }
