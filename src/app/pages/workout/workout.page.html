@@ -1,77 +1,103 @@
-<ion-header>
-  <ion-toolbar class="px-4 bg-white">
-    <ion-title class="text-xl font-semibold tracking-tight">
-      Entrenamiento
+<ion-header class="modern-header">
+  <ion-toolbar class="modern-toolbar">
+    <ion-title class="modern-title">
+      <span>Entrenamiento</span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-gray-50">
+<ion-content class="modern-content">
 
-  <div class="px-4 py-6 max-w-md mx-auto space-y-4">
+  <div class="px-5 py-6 max-w-md mx-auto">
+
+    <!-- HEADER SECTION -->
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ routineName }}</h1>
+      <p class="text-gray-500 text-sm">Registra tus series y repeticiones</p>
+    </div>
 
     <!-- EJERCICIOS -->
-    <ion-card
-      *ngFor="let ex of exercises; let i = index"
-      class="rounded-3xl bg-white shadow-sm">
+    <div class="exercise-list">
+      <ion-card
+        *ngFor="let ex of exercises; let i = index"
+        class="routine-card">
 
-      <ion-card-header class="pb-2">
-        <ion-card-title class="text-lg font-semibold text-gray-900 text-center">
-          {{ ex.name }}
-        </ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content class="pt-0 space-y-3">
-
-        <!-- SERIES -->
-        <div
-          *ngFor="let set of ex.sets; let j = index"
-          class="flex items-center gap-3">
-
-          <!-- PESO -->
-          <ion-input
-            type="number"
-            placeholder="Peso"
-            [(ngModel)]="set.weight"
-            class=" flex-1 rounded-xl border border-gray-200 px-3 py-2 text-sm">
-          </ion-input>
-
-          <!-- REPS -->
-          <ion-input
-            type="number"
-            placeholder="Reps"
-            [(ngModel)]="set.reps"
-            class="flex-1 rounded-xl border border-gray-200 px-3 py-2 text-sm">
-          </ion-input>
-
-          <!-- ELIMINAR SERIE -->
-          <ion-button
-            fill="clear"
-            color="danger"
-            (click)="removeSet(i, j)">
-            <ion-icon name="trash-outline"></ion-icon>
-          </ion-button>
-
+        <div class="routine-header">
+          <div class="routine-info">
+            <ion-card-title class="routine-title">
+              {{ i + 1 }}. {{ ex.name }}
+            </ion-card-title>
+          </div>
         </div>
 
-        <!-- AGREGAR SERIE -->
-        <ion-button
-          size="small"
-          (click)="addSet(i)">
-          <ion-icon slot="icon-only" name="add"></ion-icon>
-        </ion-button>
+        <ion-card-content class="routine-content">
 
-      </ion-card-content>
+          <!-- SETS HEADER -->
+          <div class="sets-header">
+            <span class="set-label">Peso (kg)</span>
+            <span class="set-label">Reps</span>
+            <span class="set-label-actions"></span>
+          </div>
 
-    </ion-card>
+          <!-- SERIES -->
+          <div class="sets-list">
+            <div
+              *ngFor="let set of ex.sets; let j = index"
+              class="set-row">
+
+              <!-- PESO -->
+              <div class="input-wrapper">
+                <ion-input
+                  type="number"
+                  placeholder="0"
+                  [(ngModel)]="set.weight"
+                  class="set-input weight-input">
+                </ion-input>
+                <span class="input-unit">kg</span>
+              </div>
+
+              <!-- REPS -->
+              <div class="input-wrapper">
+                <ion-input
+                  type="number"
+                  placeholder="0"
+                  [(ngModel)]="set.reps"
+                  class="set-input reps-input">
+                </ion-input>
+                <span class="input-unit">reps</span>
+              </div>
+
+              <!-- ELIMINAR SERIE -->
+              <ion-button
+                fill="clear"
+                class="remove-set-btn"
+                (click)="removeSet(i, j)"
+                [disabled]="ex.sets.length === 1">
+                <ion-icon name="close-circle-outline"></ion-icon>
+              </ion-button>
+
+            </div>
+          </div>
+
+          <!-- AGREGAR SERIE -->
+          <ion-button
+            fill="clear"
+            class="start-btn"
+            (click)="addSet(i)">
+            <span>Agregar serie</span>
+          </ion-button>
+
+        </ion-card-content>
+
+      </ion-card>
+    </div>
 
     <!-- TERMINAR RUTINA -->
     <ion-button
       expand="block"
-      color="success"
-      class="mt-6 h-14 rounded-2xl text-base font-semibold tracking-wide"
+      class="create-btn"
       (click)="finishWorkout()">
-      Terminar rutina
+      <span>Terminar entrenamiento</span>
     </ion-button>
 
   </div>

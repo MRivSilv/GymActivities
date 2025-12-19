@@ -1,0 +1,146 @@
+// Modern Color Scheme - Orange/Coral Dynamic
+
+.modern-header {
+  .modern-toolbar {
+    --background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    --color: #ffffff;
+    --border-width: 0;
+    padding: 0 1.25rem;
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+  }
+
+  .modern-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+}
+
+.modern-content {
+  --background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.modern-content > div {
+  padding: 1.5rem 1.25rem;
+  max-width: 100%;
+}
+
+h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+p {
+  font-size: 0.9375rem;
+  color: #64748b;
+  margin: 0;
+  font-weight: 400;
+}
+
+.input-container {
+  margin-bottom: 1.5rem;
+}
+
+.routine-name-input {
+  --padding-start: 1.25rem;
+  --padding-end: 1.25rem;
+  --padding-top: 1rem;
+  --padding-bottom: 1rem;
+  --background: #ffffff;
+  --border-radius: 12px;
+  --border-width: 1px;
+  --border-color: #e5e7eb;
+  --border-style: solid;
+  --color: #1a1a1a;
+  font-weight: 500;
+  font-size: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  
+  &:focus-within {
+    --border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  }
+}
+
+.create-btn {
+  --background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  --color: white;
+  --border-radius: 16px;
+  height: 56px;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-transform: none;
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:active:not([disabled]) {
+    transform: scale(0.97);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  }
+  
+  &[disabled] {
+    opacity: 0.5;
+    --background: #d1d5db;
+  }
+  
+  &:hover:not([disabled]) {
+    box-shadow: 0 12px 32px rgba(249, 115, 22, 0.5);
+    transform: translateY(-2px);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 360px) {
+  .modern-header .modern-toolbar {
+    padding: 0 1rem;
+  }
+
+  .modern-title {
+    font-size: 1.375rem;
+  }
+
+  .modern-content > div {
+    padding: 1.25rem 1rem;
+  }
+
+  h1 {
+    font-size: 1.625rem;
+  }
+
+  .routine-name-input {
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+    font-size: 0.9375rem;
+  }
+
+  .create-btn {
+    height: 48px;
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .modern-content > div {
+    padding: 2rem 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .modern-header .modern-toolbar {
+    padding: 0 2rem;
+  }
+
+  .create-btn {
+    height: 56px;
+    font-size: 1rem;
+  }
+}

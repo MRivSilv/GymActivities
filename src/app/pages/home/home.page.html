@@ -1,88 +1,86 @@
-<ion-header>
-  <ion-toolbar class="px-4 bg-white">
-    <ion-title class="text-xl font-semibold tracking-tight">
-      GymActivities
+<ion-header class="modern-header">
+  <ion-toolbar class="modern-toolbar">
+    <ion-title class="modern-title">
+      <span>GymActivities</span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="bg-gray-50">
+<ion-content class="modern-content">
 
-  <div class="px-4 py-6 max-w-md mx-auto">
+  <div class="px-5 py-6 max-w-md mx-auto">
 
-    <!-- TÍTULO -->
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-semibold text-gray-900">
-        Rutinas
-      </h2>
+    <!-- HEADER SECTION -->
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Mis Rutinas</h1>
+      <p class="text-gray-500 text-sm">Gestiona tus entrenamientos</p>
     </div>
 
     <!-- SIN RUTINAS -->
     <div
       *ngIf="routines.length === 0"
-      class="text-center text-gray-400 italic py-10">
-      Aún no tienes rutinas creadas
+      class="empty-state">
+      <p class="empty-text">Aún no tienes rutinas creadas</p>
+      <p class="empty-subtext">Crea tu primera rutina para comenzar</p>
     </div>
 
     <!-- LISTA DE RUTINAS -->
-    <ion-card
-      *ngFor="let routine of routines; let i = index"
-      (click)="startRoutine(routine)"
-      class="relative mb-4 rounded-3xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 active:scale-[0.98]">
+    <div class="routine-list">
+      <ion-card
+        *ngFor="let routine of routines; let i = index"
+        (click)="startRoutine(routine)"
+        class="routine-card">
 
-    <ion-button
-      fill="clear"
-      color="danger"
-      class="absolute top-3 right-3 z-10"
-      (click)="deleteRoutine(i); $event.stopPropagation()">
+        <ion-button
+          fill="clear"
+          class="delete-btn"
+          (click)="deleteRoutine(i); $event.stopPropagation()">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
 
-      <ion-icon
-        name="trash-outline"
-        class="text-xl"
-        color="black">
-      </ion-icon>
-
-    </ion-button>
-
-
-      <ion-card-header class="pb-2">
-        <ion-card-title class="text-lg font-semibold text-gray-900 text-center">
-          {{ routine.name }}
-        </ion-card-title>
-
-        <ion-card-subtitle class="text-sm text-gray-500 mx-4">
-          {{ routine.exercises.length }} ejercicios
-        </ion-card-subtitle>
-      </ion-card-header>
-
-      <ion-card-content class="pt-0">
-
-        <div class="space-y-1">
-          <div
-            *ngFor="let ex of routine.exercises | slice:0:3"
-            class="text-sm text-gray-700">
-            • {{ ex.name }}
+        <div class="routine-header">
+          <div class="routine-info">
+            <ion-card-title class="routine-title">
+              {{ routine.name }}
+            </ion-card-title>
+            <ion-card-subtitle class="routine-subtitle">
+              <span>{{ routine.exercises.length }} ejercicios</span>
+            </ion-card-subtitle>
           </div>
         </div>
 
-        <div
-          *ngIf="routine.exercises.length > 3"
-          class="mt-2 text-xs text-gray-400">
-          +{{ routine.exercises.length - 3 }} más
+        <ion-card-content class="routine-content">
+          <div class="exercise-preview">
+            <div
+              *ngFor="let ex of routine.exercises | slice:0:3"
+              class="exercise-item">
+              <span>{{ ex.name }}</span>
+            </div>
+          </div>
+
+          <div
+            *ngIf="routine.exercises.length > 3"
+            class="more-exercises">
+            +{{ routine.exercises.length - 3 }} más ejercicios
+          </div>
+        </ion-card-content>
+
+        <div class="routine-footer">
+          <ion-button fill="clear" class="start-btn">
+            <span>Iniciar</span>
+          </ion-button>
         </div>
 
-      </ion-card-content>
-
-    </ion-card>
+      </ion-card>
+    </div>
 
     <!-- BOTÓN CREAR RUTINA -->
     <ion-button
       expand="block"
-      class="mt-8 h-14 rounded-2xl text-base font-semibold tracking-wide"
+      class="create-btn"
       (click)="goToCreate()">
-      Crear rutina
+      <span>Crear nueva rutina</span>
     </ion-button>
-
 
   </div>
 

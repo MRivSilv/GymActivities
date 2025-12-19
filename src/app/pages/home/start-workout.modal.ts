@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   selector: 'app-start-workout-modal',
   templateUrl: 'start-workout.modal.html',
+  styleUrls: ['start-workout.modal.scss'],
   imports: [IonicModule, CommonModule],
 })
 export class StartWorkoutModal {

@@ -39,8 +39,10 @@ export class CreatePage implements OnInit {
   async openRoutineModal() {
     const modal = await this.modalCtrl.create({
       component: RoutineNameModal,
-      breakpoints: [0, 0.4],
-      initialBreakpoint: 0.4,
+      breakpoints: [0, 0.5, 0.75],
+      initialBreakpoint: 0.5,
+      canDismiss: true,
+      backdropDismiss: true
     });
 
     await modal.present();
@@ -68,6 +70,11 @@ export class CreatePage implements OnInit {
 
     this.router.navigate(['/home']);
   }
+
+  get isCreateDisabled(): boolean {
+    return this.exercises.length === 0 || this.exercises.every(e => !e.name.trim());
+  }
+
   ngOnInit() {
   }
 

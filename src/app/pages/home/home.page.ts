@@ -67,8 +67,10 @@ export class HomePage implements OnInit {
       componentProps: {
         routineName: routine.name
       },
-      breakpoints: [0, 0.35],
-      initialBreakpoint: 0.35
+      breakpoints: [0, 0.5, 0.75],
+      initialBreakpoint: 0.5,
+      canDismiss: true,
+      backdropDismiss: true
     });
 
     await modal.present();

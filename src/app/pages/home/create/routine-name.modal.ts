@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   selector: 'app-routine-name-modal',
   templateUrl: './routine-name.modal.html',
+  styleUrls: ['./routine-name.modal.scss'],
   imports: [IonicModule, CommonModule, FormsModule],
 })
 export class RoutineNameModal {

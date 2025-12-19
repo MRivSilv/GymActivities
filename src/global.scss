@@ -36,4 +36,135 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
+// sass-lint:disable no-warn
 @import "tailwindcss";
+// sass-lint:enable no-warn
+
+/* Modern Global Styles */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+/* Smooth transitions for all interactive elements */
+ion-button, ion-card, ion-input {
+  transition: all 0.2s ease;
+}
+
+/* Custom scrollbar */
+ion-content {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.5);
+    border-radius: 3px;
+    
+    &:hover {
+      background: rgba(148, 163, 184, 0.7);
+    }
+  }
+}
+
+/* Better focus states */
+ion-input:focus-within,
+ion-button:focus-visible {
+  outline: none;
+}
+
+/* Modern card hover effects */
+ion-card {
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Improved button press feedback */
+ion-button {
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Responsive utilities */
+@media (max-width: 360px) {
+  /* Ensure minimum touch target sizes */
+  ion-button {
+    min-height: 44px;
+  }
+
+  /* Better spacing on small screens */
+  ion-content {
+    --padding-start: 1rem;
+    --padding-end: 1rem;
+  }
+}
+
+@media (min-width: 640px) {
+  /* Tablet optimizations */
+  ion-content {
+    --padding-start: 2rem;
+    --padding-end: 2rem;
+  }
+
+  /* Larger touch targets for tablets */
+  ion-button {
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop optimizations */
+  ion-content {
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+
+  /* Hover effects for desktop */
+  ion-card {
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  ion-button {
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+/* Fluid typography */
+@media (min-width: 320px) and (max-width: 1920px) {
+  html {
+    font-size: clamp(14px, 1.5vw, 16px);
+  }
+}
+
+/* Better focus states for accessibility */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    transition-duration: 0.2s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
